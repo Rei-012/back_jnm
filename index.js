@@ -27,6 +27,19 @@ db.connect(err => {
 // API Endpoints
 
 // Fetch All Users
+app.get('/', (req, res) => {
+    const query = 'SELECT * FROM users';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Hi:', err);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+// Fetch All Users
 app.get('/api/users', (req, res) => {
     const query = 'SELECT * FROM users';
     db.query(query, (err, results) => {
